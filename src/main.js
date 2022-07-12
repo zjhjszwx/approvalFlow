@@ -7,8 +7,6 @@ import 'element-ui/lib/theme-chalk/index.css';
 import '@/components/DynamicForm/styles/index.styl'
 import '@/components/DynamicForm/icons'
 
-import FormControls from './components/FormControls/index.js'
-Vue.use( FormControls )
 Vue.use( ElementUI );
 
 Vue.config.productionTip = false

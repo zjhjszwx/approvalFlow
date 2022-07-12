@@ -313,36 +313,6 @@ export const selectComponents = [{
   asSummary: false
 },
 
-{
-  label: '组织机构',
-  tag: 'fc-org-select',
-  tagIcon: 'dept',
-  defaultValue: null,
-  tabList: ['dep'],
-  buttonType: 'button',
-  title: '组织机构',
-  searchable: true,
-  maxNum: 1,
-  tagConfig: {
-    type: 'info',
-    closable: true,
-    'disable-transitions': false,
-    hit: false,
-    color: undefined,
-    size: 'small',
-    effect: 'light'
-  },
-  style: { width: '100%' },
-  span: 24,
-  labelWidth: null,
-  disabled: false,
-  required: true,
-  regList: [],
-  changeTag: true,
-  proCondition: true,
-  asSummary: false
-},
-
 
 {
   // el-time-picker
@@ -701,5 +671,4 @@ export const trigger = {
   'fc-amount': 'change',
   'fc-time-duration': 'change',
   'fc-date-duration': 'change',
-  'fc-org-select': 'input'
 }

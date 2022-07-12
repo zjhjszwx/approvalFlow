@@ -2,20 +2,6 @@
   <div>
     <el-row :gutter="15">
       <el-form ref="elForm" :model="formData" :rules="rules" size="small" label-width="100px">
-        <el-col :span="24">
-          <el-form-item label="组织机构" prop="field20" required>
-            <fc-org-select
-              v-model="formData.field20"
-              :tabList="['dep']"
-              title="组织机构"
-              :searchable="true"
-              :maxNum="1"
-              :tagConfig="{'type':'info','closable':true,'disable-transitions':false,'hit':false,'size':'small','effect':'light'}"
-              buttonType="button"
-              :style="{width: '100%'}"
-            ></fc-org-select>
-          </el-form-item>
-        </el-col>
         <el-col :span="12">
           <el-form-item label="姓名" prop="field2">
             <el-input
@@ -24,16 +10,6 @@
               clearable
               :style="{width: '100%'}"
             ></el-input>
-          </el-form-item>
-        </el-col>
-        <el-col :span="24">
-          <el-form-item label="金额" prop="field21">
-            <fc-amount
-              v-model="formData.field21"
-              placeholder="请输入金额"
-              controls-position="right"
-              :showChinese="true"
-            ></fc-amount>
           </el-form-item>
         </el-col>
         <el-col :span="12">
@@ -245,7 +221,6 @@ export default {
       drawerTitle: "",
       drawerText: "",
       formData: {
-        field20: { dep: [{ nodeId: 1, deptId: 1, deptName: "xxx公司" }] },
         field2: undefined,
         field21: 10,
         field3: undefined,
@@ -253,25 +228,6 @@ export default {
         field5: [{ field6: null, field7: null, field8: null, field9: [] }],
       },
       rules: {
-        field20: [
-          {
-            validator: (rule, value, callback) => {
-              const val = eval("window._previewVm.vmFormData." + rule.field);
-              const tabList = ["dep"];
-              let count = 0;
-              tabList.forEach((key) => {
-                val && Array.isArray(val[key]) && (count += val[key].length);
-              });
-              if (count > 0) {
-                callback();
-              } else {
-                callback(new Error("组织机构不能为空"));
-              }
-            },
-            trigger: "input",
-            type: "object",
-          },
-        ],
         field2: [],
         field21: [],
         field3: [{ required: true, message: "请选择学历", trigger: "change" }],

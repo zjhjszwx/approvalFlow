@@ -23,31 +23,13 @@
       <el-button size="small" class="publish-btn" @click="publish">发布</el-button>
     </header>
     <section class="page__content" v-if="mockData">
-      <BasicSetting
-        ref="basicSetting" 
-        :conf="mockData.basicSetting"
-        v-show="activeStep === 'basicSetting'" 
-        tabName="basicSetting"
-        @initiatorChange="onInitiatorChange" /> 
-
       <DynamicForm
         ref="formDesign"
         :conf="mockData.formData"
         v-show="activeStep === 'formDesign'" 
         tabName="formDesign" />
 
-      <Process  
-        ref="processDesign"
-        :conf="mockData.processData"
-        tabName="processDesign" 
-        v-show="activeStep === 'processDesign'" 
-        @startNodeChange="onStartChange"/>
-
-      <AdvancedSetting
-        ref="advancedSetting"
-        :conf="mockData.advancedSetting"
-        v-show="activeStep === 'advancedSetting'" />
-
+ 
     </section>
     <div class="github">
       <el-tooltip effect="dark" content="前往Github" placement="top">
@@ -61,10 +43,7 @@
 
 <script>
 // @ is an alias to /src
-import Process from "@/components/Process";
 import DynamicForm from "@/components/DynamicForm";
-import BasicSetting from '@/components/BasicSetting'
-import AdvancedSetting from '@/components/AdvancedSetting'
 import { GET_MOCK_CONF } from '../../api'
 const beforeUnload = function (e) {
   var confirmationMessage = '离开网站可能会丢失您编辑得内容';
@@ -83,12 +62,9 @@ export default {
   data() {
     return {
       mockData: null, // 可选择诸如 $route.param，Ajax获取数据等方式自行注入
-      activeStep: "basicSetting", // 激活的步骤面板
+      activeStep: "formDesign", // 激活的步骤面板
       steps: [
-        { label: "基础设置", key: "basicSetting" },
         { label: "表单设计", key: "formDesign" },
-        { label: "流程设计", key: "processDesign" },
-        { label: "高级设置", key: "advancedSetting" }
       ]
     };
   },
@@ -154,29 +130,9 @@ export default {
           });
         }).catch(() => { });
     },
-    /**
-     * 同步基础设置发起人和流程节点发起人
-     */
-    onInitiatorChange (val, labels) {
-      const processCmp = this.$refs.processDesign
-      const startNode = processCmp.data
-      startNode.properties.initiator = val['dep&user']
-      startNode.content =  labels  || '所有人'
-      processCmp.forceUpdate()
-    },
-    /**
-     * 监听 流程节点发起人改变 并同步到基础设置 发起人数据
-     */
-    onStartChange(node){
-      const basicSetting = this.$refs.basicSetting
-      basicSetting.formData.initiator = { 'dep&user': node.properties.initiator }
-    }
   },
   components: {
-    Process,
     DynamicForm,
-    BasicSetting,
-    AdvancedSetting
   }
 };
 </script>
@@ -191,7 +147,9 @@ $header-height = 54px;
   .page__header {
     width: 100%;
     height: $header-height;
-    flex-center()
+    display flex
+    align-items center
+    justify-content center
     justify-content: space-between;
     box-sizing: border-box;
     color: white;

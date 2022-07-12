@@ -197,29 +197,15 @@
       @tag-change="tagChange"
     />
 
-    <!-- <form-drawer
-      :visible.sync="drawerVisible"
-      :form-data="formData"
-      size="100%"
-      :generate-conf="generateConf"
-    />-->
-    <!-- <code-type-dialog
-      :visible.sync="dialogVisible"
-      title="选择生成类型"
-      :show-file-name="showFileName"
-      @confirm="generate"
-    />-->
     <input id="copyNode" type="hidden" />
   </div>
 </template>
 
 <script>
 import draggable from "vuedraggable";
-// import { saveAs } from 'file-saver'
-// import beautifier from 'beautifier'
-// import ClipboardJS from 'clipboard'
+
 import render from "./components/render";
-// import FormDrawer from './FormDrawer'
+
 import RightPanel from "./RightPanel";
 import {
   inputComponents,
@@ -230,33 +216,21 @@ import {
   formConf
 } from "./components/generator/config";
 import {
-  exportDefault,
-  beautifierConf,
-  isNumberStr,
+
   titleCase
 } from "./utils/index";
-import {
-  makeUpHtml,
-  vueTemplate,
-  vueScript,
-  cssStyle
-} from "./components/generator/html";
-import { makeUpJs } from "./components/generator/js";
-import { makeUpCss } from "./components/generator/css";
+
 import drawingDefalut from "./components/generator/drawingDefalut";
-// import CodeTypeDialog from './CodeTypeDialog'
 import DraggableItem from "./DraggableItem";
 import {
   getDrawingList,
   saveDrawingList,
-  // getIdGlobal,
-  // saveIdGlobal,
+
   getFormConf
 } from "./utils/db";
 import { debounce } from '@/utils'
-
-const emptyActiveData = { style: {}, autosize: {} };
 let oldActiveId;
+
 let tempActiveData;
 const formConfInDB = getFormConf();
 // const idGlobal = getIdGlobal();

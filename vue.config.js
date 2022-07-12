@@ -10,14 +10,6 @@ module.exports = {
   devServer: {
     port: 8088
   },
-  css: {
-    loaderOptions: {
-      // 给 stylus-loader 传递选项
-      stylus: {
-        import: '~@/assets/style/global.styl'
-      }
-    }
-  },
   chainWebpack ( config ) {
     // set svg-sprite-loader
     config.module
