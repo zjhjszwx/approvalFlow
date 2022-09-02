@@ -21,6 +21,10 @@ function isExternal(path) {
   return /^(https?:|mailto:|tel:)/.test(path)
 }
 
+/**
+ * 使用 svg-sprite 插件,svg 文件内容放到了 body 下面：
+ * use xlink-href #icon-xxx
+ */
 export default {
   name: 'SvgIcon',
   props: {

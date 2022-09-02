@@ -40,61 +40,10 @@
                   </div>
                 </div>
               </draggable>
-              <!-- <div class="components-title">
-                <svg-icon icon-class="component" />选择型组件
-              </div>-->
-              <!-- <draggable
-                class="components-draggable"
-                :list="selectComponents"
-                :group="{ name: 'componentsGroup', pull: 'clone', put: false }"
-                :clone="cloneComponent"
-                draggable=".components-item"
-                :sort="false"
-                @end="onEnd"
-              >
-                <div
-                  v-for="(element, index) in selectComponents"
-                  :key="index"
-                  class="components-item"
-                  @click="addComponent(element)"
-                >
-                  <div class="components-body">
-                    <svg-icon :icon-class="element.tagIcon" />
-                    {{ element.label }}
-                  </div>
-                </div>
-              </draggable>-->
-              <!-- <div class="components-title">
-                <svg-icon icon-class="component" />布局型组件
-              </div>-->
-              <!-- <draggable
-                class="components-draggable"
-                :list="layoutComponents"
-                :group="{ name: 'componentsGroup', pull: 'clone', put: false }"
-                :clone="cloneComponent"
-                draggable=".components-item"
-                :sort="false"
-                @end="onEnd"
-              >
-                <div
-                  v-for="(element, index) in layoutComponents"
-                  :key="index"
-                  class="components-item"
-                  @click="addComponent(element)"
-                >
-                  <div class="components-body">
-                    <svg-icon :icon-class="element.tagIcon" />
-                    {{ element.label }}
-                  </div>
-                </div>
-              </draggable>-->
             </div>
           </el-tab-pane>
           <el-tab-pane label="定制组件" name="custom">
             <div class="components-list">
-              <!-- <div class="components-title">
-                <svg-icon icon-class="component" />布局型组件
-              </div>-->
               <draggable
                 class="components-draggable"
                 :list="customMadeComponents"
@@ -327,7 +276,8 @@ export default {
   methods: {
     getIpadMode () {
       const {clientHeight, clientWidth} = this.$refs.ipad
-      this.ipadMode = clientWidth * 0.74 > clientHeight ? 'landscape' : 'portrait'
+      // 判断横向 竖向
+      this.ipadMode = clientWidth * 0.74 > clientHeight ? 'landscape' : 'portrait' 
     },
     handlerListChange(val){
       const vm = this
@@ -710,13 +660,14 @@ export default {
   border-radius: 10px;
   margin: auto;
 
+  // 切换 横向纵向
   &.portrait{
       padding: 45px 25px;
       height: 85% !important;
       width: 74%;
       min-height: 560px;
   }
-
+  
   &.landscape{
     width: 90%;
     padding: 25px 45px;
