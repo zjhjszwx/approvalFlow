@@ -12,6 +12,7 @@ import render from './components/render'
 const components = {
   itemBtns(h, element, index, parent, root) {
     const { copyItem, deleteItem } = this.$listeners
+    // 如果是自定义组建的话隐藏按钮
     const visibility ='visibility:' + (root && root.cmpType === 'custom' ? 'hidden;' : 'visible;')
     return  [
       <span class="drawing-item-delete" style={visibility} title="删除" onClick={event => {
@@ -25,7 +26,7 @@ const components = {
 const layouts = {
   colFormItem(h, element, index, parent, root) {
     const { activeItem } = this.$listeners
-    let className = this.activeId === element.formId ? 'drawing-item active-from-item' : 'drawing-item'
+    let className = this.activeId === element.formId ? 'drawing-item active-from-item ' : 'drawing-item'
     if (this.formConf.unFocusedComponentBorder) className += ' unfocus-bordered'
   
     return (
@@ -96,13 +97,14 @@ export default {
     draggable
   },
   props: [
-    'element',
-    'index',
+    'element',   // 组件配置项
+    'index',     
     'drawingList',
     'activeId',
     'formConf'
   ],
   render(h) {
+    // 区分容器组件还是单个组件
     const layout = layouts[this.element.layout]
 
     if (layout) {

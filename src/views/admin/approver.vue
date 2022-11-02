@@ -68,14 +68,14 @@ export default {
       ]
     };
   },
-  beforeRouteEnter(to, from, next){
-    window.addEventListener('beforeunload', beforeUnload)
-    next()
-  },
-  beforeRouteLeave(to, from, next){
-    window.removeEventListener('beforeunload', beforeUnload)
-    next()
-  },
+  // beforeRouteEnter(to, from, next){
+  //   window.addEventListener('beforeunload', beforeUnload)
+  //   next()
+  // },
+  // beforeRouteLeave(to, from, next){
+  //   window.removeEventListener('beforeunload', beforeUnload)
+  //   next()
+  // },
   computed:{
     translateX () {
       return `translateX(${this.steps.findIndex(t => t.key === this.activeStep) * 100}%)`
