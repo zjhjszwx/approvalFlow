@@ -9,7 +9,8 @@ const layout = {
 
 export default {
     render(h) {
-        return layout.fn.call(this, h, '222')
+        // return layout.fn.call(this, h, '222')
+        return h('el-input',{}, [<template slot="prepend">111</template>])
     },
 };
 </script>

@@ -91,7 +91,15 @@ function layoutIsNotFound() {
   throw new Error(`没有与${this.element.layout}匹配的layout`)
 }
 
+/**
+ * 函数式组件
+ * 没有管理状态
+ * 也没有生命周期方法
+ * 没有实例,也没有this
+ */
 export default {
+  // functional: true,
+
   components: {
     render,
     draggable

@@ -291,80 +291,80 @@
         "layout": "colFormItem",
         "vModel": "field2"
       },
-      {
-        "cmpType": "common",
-        "label": "学历",
-        "tag": "el-select",
-        "tagIcon": "select",
-        "placeholder": "请选择学历",
-        "span": 12,
-        "labelWidth": 0,
-        "style": {
-          "width": "100%"
-        },
-        "clearable": true,
-        "disabled": false,
-        "required": true,
-        "filterable": false,
-        "multiple": false,
-        "options": [
-          {
-            "label": "专科",
-            "value": "专科"
-          },
-          {
-            "label": "本科",
-            "value": "本科"
-          },
-          {
-            "label": "研究生",
-            "value": "研究生"
-          },
-          {
-            "label": "博士生",
-            "value": "博士生"
-          }
-        ],
-        "regList": [],
-        "changeTag": true,
-        "proCondition": true,
-        "formId": 3,
-        "renderKey": 1590647681649,
-        "layout": "colFormItem",
-        "vModel": "field3"
-      },
-      {
-        "cmpType": "common",
-        "label": "性别",
-        "tag": "el-radio-group",
-        "tagIcon": "radio",
-        "span": 12,
-        "labelWidth": 0,
-        "style": {},
-        "optionType": "default",
-        "border": false,
-        "size": "medium",
-        "disabled": false,
-        "required": false,
-        "options": [
-          {
-            "label": "男",
-            "value": "男"
-          },
-          {
-            "label": "女",
-            "value": "女"
-          }
-        ],
-        "regList": [],
-        "changeTag": true,
-        "proCondition": true,
-        "formId": 4,
-        "renderKey": 1590647690138,
-        "layout": "colFormItem",
-        "vModel": "field4",
-        "defaultValue": "男"
-      }
+      // {
+      //   "cmpType": "common",
+      //   "label": "学历",
+      //   "tag": "el-select",
+      //   "tagIcon": "select",
+      //   "placeholder": "请选择学历",
+      //   "span": 12,
+      //   "labelWidth": 0,
+      //   "style": {
+      //     "width": "100%"
+      //   },
+      //   "clearable": true,
+      //   "disabled": false,
+      //   "required": true,
+      //   "filterable": false,
+      //   "multiple": false,
+      //   "options": [
+      //     {
+      //       "label": "专科",
+      //       "value": "专科"
+      //     },
+      //     {
+      //       "label": "本科",
+      //       "value": "本科"
+      //     },
+      //     {
+      //       "label": "研究生",
+      //       "value": "研究生"
+      //     },
+      //     {
+      //       "label": "博士生",
+      //       "value": "博士生"
+      //     }
+      //   ],
+      //   "regList": [],
+      //   "changeTag": true,
+      //   "proCondition": true,
+      //   "formId": 3,
+      //   "renderKey": 1590647681649,
+      //   "layout": "colFormItem",
+      //   "vModel": "field3"
+      // },
+      // {
+      //   "cmpType": "common",
+      //   "label": "性别",
+      //   "tag": "el-radio-group",
+      //   "tagIcon": "radio",
+      //   "span": 12,
+      //   "labelWidth": 0,
+      //   "style": {},
+      //   "optionType": "default",
+      //   "border": false,
+      //   "size": "medium",
+      //   "disabled": false,
+      //   "required": false,
+      //   "options": [
+      //     {
+      //       "label": "男",
+      //       "value": "男"
+      //     },
+      //     {
+      //       "label": "女",
+      //       "value": "女"
+      //     }
+      //   ],
+      //   "regList": [],
+      //   "changeTag": true,
+      //   "proCondition": true,
+      //   "formId": 4,
+      //   "renderKey": 1590647690138,
+      //   "layout": "colFormItem",
+      //   "vModel": "field4",
+      //   "defaultValue": "男"
+      // }
      
     ],
     "formRef": "elForm",

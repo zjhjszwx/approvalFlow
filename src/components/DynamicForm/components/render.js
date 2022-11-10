@@ -97,32 +97,44 @@ export default {
       on: {},
       style: {}
     }
+    // 组件配置
     const confClone = JSON.parse( JSON.stringify( this.conf ) )
+    // 渲染的node
     const children = []
-
-    const childObjs = componentChild[confClone.tag]
+    const childObjs = componentChild[confClone.tag] // el-input
+    
+    // console.log( Object.keys( childObjs )) //['prepend', 'append']
     if ( childObjs ) {
       Object.keys( childObjs ).forEach( key => {
         const childFunc = childObjs[key]
+        // console.log("childFunc", confClone[key])
+        // 判断传入的slot
         if ( confClone[key] ) {
-          children.push( childFunc( h, confClone, key ) )
+          children.push( childFunc( h, confClone, key ) ) // 获取slot node
         }
       } )
     }
+    // console.log("children====", children)   // [VNode]
+    // console.log("confClone====", confClone) // 组件配置
 
     Object.keys( confClone ).forEach( key => {
       const val = confClone[key]
       if ( key === 'vModel' ) {
+        // v-model 绑定
         vModel( this, dataObject, confClone.defaultValue )
       } else if ( dataObject[key] ) {
+        // 判断 attr style on props
         dataObject[key] = val
       } else if ( !isAttr( key ) ) {
+        // 判断是否为props
         dataObject.props[key] = val
       } else {
+        // 作为属性传入
         dataObject.attrs[key] = val
       }
     } )
-    return h( this.conf.tag, dataObject, children )
+    console.log(this.conf.tag, dataObject, children)
+    return h( this.conf.tag, dataObject, children ) // 类似 h('el-input',{style:{}}, [<template slot="prepend">111</template>])
   },
   props: ['conf']
 }

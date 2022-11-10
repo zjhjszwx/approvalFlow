@@ -571,7 +571,9 @@ export default {
         return 
       }
       this.$store.commit("delPCondition", parent[index].formId);
+      // 通过 splice 的方法删除
       parent.splice(index, 1);
+      // 删除后激活最后一个组件
       this.$nextTick(() => {
         const len = this.drawingList.length;
         if (len) {

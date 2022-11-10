@@ -2,8 +2,7 @@ export default [
   {
     layout: 'colFormItem',
     tagIcon: 'input',
-    label: '手机号',
-    vModel: 'mobile',
+    label: '手机号-1',
     formId: 6,
     tag: 'el-input',
     placeholder: '请输入手机号',
@@ -11,7 +10,7 @@ export default [
     span: 24,
     style: { width: '100%' },
     clearable: true,
-    prepend: '',
+    prepend: 'http://',
     append: '',
     'prefix-icon': 'el-icon-mobile',
     'suffix-icon': '',
@@ -25,5 +24,6 @@ export default [
       pattern: '/^1(3|4|5|7|8|9)\\d{9}$/',
       message: '手机号格式错误'
     }]
-  }
+  },
+  
 ]
