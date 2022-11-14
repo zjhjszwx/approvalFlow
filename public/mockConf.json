@@ -280,7 +280,7 @@
         "buttonType": "button",
         "title": "组织机构",
         "searchable": true,
-        "maxNum": 1,
+        "maxNum": 10,
         "tagConfig": {
           "type": "info",
           "closable": true,
@@ -414,7 +414,7 @@
         "layout": "rowFormItem",
         "rowType": "table",
         "tagIcon": "row",
-        "tag": "fc-input-table",
+        "tag": "el-input", // 好像没有生效
         "type": "table",
         "justify": "start",
         "align": "top",
@@ -550,7 +550,7 @@
             "vModel": "field9"
           }
         ],
-        "actionText": "添加",
+        "actionText": "添加!",
         "tableConf": {},
         "showDivider": false,
         "show-summary": false,

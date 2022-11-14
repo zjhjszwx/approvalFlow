@@ -83,7 +83,7 @@ export default {
   data() {
     return {
       mockData: null, // 可选择诸如 $route.param，Ajax获取数据等方式自行注入
-      activeStep: "basicSetting", // 激活的步骤面板
+      activeStep: "formDesign", // 激活的步骤面板
       steps: [
         { label: "基础设置", key: "basicSetting" },
         { label: "表单设计", key: "formDesign" },
@@ -92,14 +92,14 @@ export default {
       ]
     };
   },
-  beforeRouteEnter(to, from, next){
-    window.addEventListener('beforeunload', beforeUnload)
-    next()
-  },
-  beforeRouteLeave(to, from, next){
-    window.removeEventListener('beforeunload', beforeUnload)
-    next()
-  },
+  // beforeRouteEnter(to, from, next){
+  //   window.addEventListener('beforeunload', beforeUnload)
+  //   next()
+  // },
+  // beforeRouteLeave(to, from, next){
+  //   window.removeEventListener('beforeunload', beforeUnload)
+  //   next()
+  // },
   computed:{
     translateX () {
       return `translateX(${this.steps.findIndex(t => t.key === this.activeStep) * 100}%)`

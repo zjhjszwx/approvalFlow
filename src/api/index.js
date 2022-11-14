@@ -1,5 +1,9 @@
 import { get } from '@/axios'
 const BASE_URL = process.env.BASE_URL
+// 用的是 vue.config.js 中的publicPath
+// console.log('BASE_URL===============', BASE_URL)
+// console.log('process.env===============', process.env) //  NODE_ENV: 'development', BASE_URL: '/approvalflow-1/'
+
 // 获取组织机构根节点
 export const GET_DEPT_ROOT = () => get( BASE_URL + 'depRoot.json' )
 

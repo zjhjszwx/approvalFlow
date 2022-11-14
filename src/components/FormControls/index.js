@@ -15,12 +15,15 @@ const components = [
   InputTable
 ]
 
+// 通过插件的形式去注册组件
 const install = function ( Vue ) {
   components.map( component => {
     Vue.component( component.name, component )
   } )
 }
 
+// console.log(install)
+
 export default {
-  install
+  install:install
 }

@@ -1,9 +1,6 @@
 
 <template>
-  <section
-    v-if="show" 
-    class="h-transfer" 
-    :class="[tabConfig.length == 1 ? 'single-tab' : '']" >
+  <section v-if="show" class="h-transfer" :class="[tabConfig.length == 1 ? 'single-tab' : '']">
     <div class="mask"></div>
     <!-- 内容面板 -->
     <div class="transfer__content">
@@ -11,22 +8,15 @@
       <header class="transfer__header">
         <i class="el-icon-monitor"></i>
         {{ title }}
-        <i class="el-icon-close" @click="closeTransfer" ></i>
+        <i class="el-icon-close" @click="closeTransfer"></i>
       </header>
       <!-- 穿梭框主要内容 -->
       <div class="transfer__body">
         <!-- 左边穿梭框 -->
         <div class="transfer-pane">
           <div class="transfer-pane__tools">
-            <el-input
-              v-model="searchString"
-              class="search-input"
-              size="mini"
-              style="width: 180px;"
-              type="search"
-              placeholder="搜索人员"
-              :disabled="!searchable"
-            ></el-input>
+            <el-input v-model="searchString" class="search-input" size="mini" style="width: 180px;" type="search"
+              placeholder="搜索人员" :disabled="!searchable"></el-input>
             <span>
               <span style="margin-right: 1rem;font-size: 14px;">{{ selectedNum }} / {{ maxNum }}</span>
               <el-tooltip placement="top" content="清空">
@@ -36,47 +26,33 @@
           </div>
           <el-scrollbar class="transfer-pane__body shadow right-pane">
             <template v-for="type in tabKeys">
-              <div
-                v-for="(item, index) in selectedData[type]"
-                :key="type + index"
-                class="selected-item"
-              >
+              <div v-for="(item, index) in selectedData[type]" :key="type + index" class="selected-item">
                 <span>
                   <!-- <i v-if="item.deptName" class="iconfont iconbumen"></i>
                   <i v-else class="iconfont iconyuangong"></i> &nbsp; -->
                   <span>{{ getNodeProp(item, 'label') }}</span>
                 </span>
-                <i
-                  class="el-icon-delete"
-                  @click="removeData(item, type)"
-                ></i>
+                <i class="el-icon-delete" @click="removeData(item, type)"></i>
               </div>
             </template>
             <template v-for="type in tabKeys">
-             <div
-                v-for="(item, index) in aloneCheckedData[type]"
-                :key="'alone' + type + index"
-                class="selected-item"
-              >
+              <div v-for="(item, index) in aloneCheckedData[type]" :key="'alone' + type + index" class="selected-item">
                 <span>
                   <!-- <i v-if="item.deptName" class="iconfont iconbumen"></i>
                   <i v-else class="iconfont iconyuangong"></i> &nbsp; -->
                   <span>{{ getNodeProp(item, 'label') }}</span>
                 </span>
-                <i
-                  class="el-icon-delete"
-                  @click="removeData(item, type, true)"
-                ></i>
+                <i class="el-icon-delete" @click="removeData(item, type, true)"></i>
               </div>
             </template>
           </el-scrollbar>
           <footer class="transfer__footer">
-            <el-button type="info" plain size="mini" @click="confirm" >确定</el-button >
+            <el-button type="info" plain size="mini" @click="confirm">确定</el-button>
             <el-button plain size="mini" @click="closeTransfer">取消</el-button>
           </footer>
         </div>
         <!-- 右边穿梭框 -->
-        
+
         <div class="transfer-pane">
           <!-- 操作栏 -->
           <!-- <div class="transfer-pane__tools">
@@ -87,44 +63,31 @@
             <div class="enough-mask" v-show="isEnough">
               <span class="p-center">最多选择{{ maxNum }}项</span>
             </div>
-            <div
-              class="searchResPane"
-              :class="{ active: searchMode }"
-              v-loading="searchLoading" >
+            <div class="searchResPane" :class="{ active: searchMode }" v-loading="searchLoading">
               <div class="hidden-tag" @click="searchString = ''">关闭</div>
               <div v-for="(item, index) in searchRes" :key="index" class="item">
                 <div>
                   <div>{{ getNodeProp(item, 'label') }}</div>
-                  <div class="text-ellipsis search-res-tip" >
+                  <div class="text-ellipsis search-res-tip">
                     {{ getNodeProp(item, 'searchResTip') }}
                   </div>
                 </div>
-                <el-checkbox @change="checked => checked ? addData(item) : removeData(item, activeTabName, true)"></el-checkbox>
+                <el-checkbox @change="checked => checked ? addData(item) : removeData(item, activeTabName, true)">
+                </el-checkbox>
               </div>
             </div>
 
             <el-scrollbar style="height:100%;">
-              <el-tabs
-                v-model="activeTabName"
-                type="border-card"
-                style="min-height: 370px;"
-              >
-                <el-tab-pane v-for="(tab_item, idx) in tabConfig" :name="tab_item.tabKey" :label="tab_item.tabName" :key="idx">
-                  <el-tree
-                    :ref="tab_item.tabKey"
-                    lazy
-                    show-checkbox
-                    :props="{
-                      children: tab_item.children,
-                      label: tab_item.label,
-                      isLeaf: tab_item.isLeaf,
-                      disabled: tab_item.disabled
-                    }"
-                    :load="onLoad"
-                    node-key="nodeId"
-                    :check-strictly="true"
-                    @check-change="(data, checked) => onCheckChange(data, checked, tab_item.tabKey)"
-                  >
+              <el-tabs v-model="activeTabName" type="border-card" style="min-height: 370px;">
+                <el-tab-pane v-for="(tab_item, idx) in tabConfig" :name="tab_item.tabKey" :label="tab_item.tabName"
+                  :key="idx">
+                  <el-tree :ref="tab_item.tabKey" lazy show-checkbox :props="{
+                    children: tab_item.children,
+                    label: tab_item.label,
+                    isLeaf: tab_item.isLeaf,
+                    disabled: tab_item.disabled
+                  }" :load="onLoad" node-key="nodeId" :check-strictly="true"
+                    @check-change="(data, checked) => onCheckChange(data, checked, tab_item.tabKey)">
                   </el-tree>
                 </el-tab-pane>
               </el-tabs>
@@ -132,7 +95,7 @@
           </div>
         </div>
       </div>
-      
+
     </div>
   </section>
 </template>
@@ -179,23 +142,23 @@ export default {
       default: 99
     }
   },
-  data () {
-    
+  data() {
+
     return {
       searchRes: [],  // 搜索后的结果
       selectedData: [],   // 用户手动选择的节点(在tree里面已经显示的节点)
       aloneCheckedData: [], // 已有的 但是未在tree中渲染的数据 例如回显时的数据
       isEnough: false,  // 是否选择了足够的人数
-      searchString: '',  
+      searchString: '',
       searchMode: false,  // 是否展示搜索面板
-      searchLoading: false, 
+      searchLoading: false,
       activeTabName: '',
       tabConfig: [],
       tabKeys: []
     }
   },
   computed: {
-    selectedNum () {
+    selectedNum() {
       let num = 0
       for (const key of this.tabKeys) {
         const data1 = this.selectedData[key]
@@ -206,31 +169,31 @@ export default {
       return num
     }
   },
-  mounted () {
+  mounted() {
     this.isNumEnough()
     this.debounceSearch = debounce(this.searchDepUser, 500)
   },
   methods: {
-    onLoad (node, resolve) {
-      const conf= this.tabConfig
-      .find(t => t.tabKey === this.activeTabName)
+    onLoad(node, resolve) {
+      const conf = this.tabConfig
+        .find(t => t.tabKey === this.activeTabName)
       // load 方法返回一个promise
       conf.onload(node)
-      .then(res => {
-        const nodes = res.map( t => ( { nodeId: conf.nodeId(t), ...t } ) )
-        resolve(nodes)
-      })
-      .then(res=>{
-        for (const tabKey of this.tabKeys) {
-         const tree = this.$refs[tabKey][0]
-         this.aloneCheckedData[tabKey].forEach(data => {
-          tree.setChecked(data.nodeId, true)
-         })
-        }
-      })
+        .then(res => {
+          const nodes = res.map(t => ({ nodeId: conf.nodeId(t), ...t }))
+          resolve(nodes)
+        })
+        .then(res => {
+          for (const tabKey of this.tabKeys) {
+            const tree = this.$refs[tabKey][0]
+            this.aloneCheckedData[tabKey].forEach(data => {
+              tree.setChecked(data.nodeId, true)
+            })
+          }
+        })
     },
 
-    searchDepUser () {
+    searchDepUser() {
       if (!this.searchString) {
         this.searchRes = []
         return
@@ -247,7 +210,7 @@ export default {
         .finally(() => this.searchLoading = false)
     },
 
-    onCheckChange (data, checked, tabKey) {
+    onCheckChange(data, checked, tabKey) {
       this.activeTabName = tabKey
       const index = this.aloneCheckedData[tabKey].findIndex(t => t.nodeId === data.nodeId)
       if (index > -1) {
@@ -259,22 +222,22 @@ export default {
           !t.nodeId && (t.nodeId = this.getNodeProp(t, 'nodeId', this.activeTabName))
           return t
         })
-        this.$set(this.selectedData, this.activeTabName,nodes )
+        this.$set(this.selectedData, this.activeTabName, nodes)
         this.isNumEnough()
         this.$forceUpdate()
       })
     },
 
-    addData (data) {
+    addData(data) {
       const tabKey = this.activeTabName
       const tree = this.$refs[tabKey][0]
       tree.setChecked(data.nodeId, true)
       !tree.getCheckedKeys(data).includes(data.nodeId)
-      && !this.aloneCheckedData[tabKey].find(t => t.nodeId === data.nodeId)
-      && this.aloneCheckedData[tabKey].push(data)
+        && !this.aloneCheckedData[tabKey].find(t => t.nodeId === data.nodeId)
+        && this.aloneCheckedData[tabKey].push(data)
     },
 
-    removeData (data, tabKey, fromAloneData = false) {
+    removeData(data, tabKey, fromAloneData = false) {
       if (fromAloneData) {
         const index = this.aloneCheckedData[tabKey].findIndex(t => t.nodeId === data.nodeId)
         index > -1 && this.aloneCheckedData[tabKey].splice(index, 1)
@@ -283,7 +246,7 @@ export default {
       }
     },
 
-    removeAll () {
+    removeAll() {
       for (const type of this.tabKeys) {
         const tree = this.$refs[type][0]
         tree.getCheckedKeys().forEach(key => {
@@ -294,7 +257,7 @@ export default {
       }
     },
 
-    isNumEnough () {
+    isNumEnough() {
       let count = 0
       for (const type of this.tabKeys) {
         count += this.selectedData[type].length
@@ -303,14 +266,14 @@ export default {
       this.isEnough = count >= this.maxNum
     },
 
-    closeTransfer () {
-      this.$emit('update:show', false)
+    closeTransfer() {
+      this.$emit('update:show', false) // 更新属性
       this.tabKeys = []
       this.isEnough = false
       this.searchString = ''
     },
 
-    confirm () {
+    confirm() {
       const res = {}
       for (const type of this.tabKeys) {
         res[type] = this.selectedData[type].concat(this.aloneCheckedData[type])
@@ -319,32 +282,32 @@ export default {
       this.closeTransfer()
     },
 
-    getActiveConf(tabKey){
+    getActiveConf(tabKey) {
       const target = tabKey || this.activeTabName
       return this.tabConfig.find(t => t.tabKey === target)
     },
 
-    getConfProp(propName, tabKey){
+    getConfProp(propName, tabKey) {
       const conf = this.getActiveConf(tabKey)
       return conf ? conf[propName] : null
     },
 
-    getNodeProp(data, propName, tabKey){
-      try{
+    getNodeProp(data, propName, tabKey) {
+      try {
         const prop = this.getConfProp(propName, tabKey)
-        if(typeof prop === 'string'){
+        if (typeof prop === 'string') {
           return data[prop]
         }
-        if(typeof prop === 'function'){
+        if (typeof prop === 'function') {
           return prop(data)
         }
-      }catch(e){
+      } catch (e) {
         console.error(e)
         return '执行出错，可联系开发人员'
       }
     },
 
-    dataInit(){
+    dataInit() {
       this.aloneCheckedData = {}
       this.selectedData = {}
       this.tabConfig = []
@@ -353,7 +316,7 @@ export default {
       const initDefaultData = (key, mergedConfig) => {
         this.tabConfig.push(mergedConfig)
         this.tabKeys.push(key)
-        let  data = this.value && this.value[key] ? this.value[key] : []
+        let data = this.value && this.value[key] ? this.value[key] : []
         data = data.map(t => ({ nodeId: mergedConfig.nodeId(t), ...t }))
         this.$set(this.aloneCheckedData, key, data)
       }
@@ -368,7 +331,7 @@ export default {
     }
   },
   watch: {
-    searchString (newVal) {
+    searchString(newVal) {
       this.searchMode = !!newVal
       this.debounceSearch()
     },
@@ -376,15 +339,15 @@ export default {
     show: {
       handler: function (show) {
         if (show) {
-          this.dataInit() 
+          this.dataInit()
           this.isNumEnough()
         }
       },
       immediate: true
     },
 
-    tabList:{
-      handler: function(val){
+    tabList: {
+      handler: function (val) {
         this.dataInit() // tablist 比show 延后 
       },
       immediate: true,

@@ -45,7 +45,7 @@ const layouts = {
     const { activeItem } = this.$listeners
     const { put } = this.$attrs
     const className = this.activeId === element.formId ? 'drawing-row-item active-from-item' : 'drawing-row-item'
-   
+    // console.log(element.label)
     let child = renderChildren.apply(this, arguments)
     if (element.type === 'flex') {
       child = <el-row type={element.type} justify={element.justify} align={element.align} >
@@ -63,12 +63,7 @@ const layouts = {
             {child}
           </draggable>
           { components.itemBtns.apply(this, arguments)}
-          {
-            element.rowType === 'table' && 
-              <div style="text-align: center;background: white;color: #4e79ff;padding: .4rem 1rem;">
-                <i class="el-icon-plus"></i> {element.actionText}
-              </div>
-          } 
+         
         </el-row>
       </el-col>
     )

@@ -35,6 +35,7 @@
 </template>
 <script>
 export default {
+  // 修改v-model 绑定属性和默认绑定方法, 默认绑定输入框value属性和change方法
   model:{
     prop: 'value',
     event: 'input'
